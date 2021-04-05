@@ -1,15 +1,27 @@
-type Product
-@model(subscriptions: null)
-@auth(
-  rules: [
-    { allow: owner },
-    { allow: private, operations: [read] }
-  ]) {
+type SensorValue @model (subscriptions: null)
+@auth (
+    rules: [
+        { allow: private, provider: userPools}
+    ]
+) 
+{
   id: ID!
-  name: String!
-  description: String
-  price: Float
-  userId: String
-  userName: String
-  image: String
+  sensorId: String!
+  value: Float!
+  isWarning: Boolean!
+  timestamp: AWSTimestamp!
+}
+
+type Subscription {
+  onUpdateSensorValue(sensorId: String!): SensorValue @aws_subscribe(mutations: ["updateSensorValue"])
+}
+
+type Sensor
+{
+  sensorId: String!
+  sensorType: String!
+}
+
+type Query {
+  getSensor(sensorId: String!): Sensor @function(name: "sensorview-get-sensor-${env}")
 }

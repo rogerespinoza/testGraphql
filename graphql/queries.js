@@ -1,40 +1,42 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getProduct = /* GraphQL */ `
-  query GetProduct($id: ID!) {
-    getProduct(id: $id) {
-      id
-      name
-      description
-      price
-      userId
-      userName
-      image
-      createdAt
-      updatedAt
-      owner
+export const getSensor = /* GraphQL */ `
+  query GetSensor($sensorId: String!) {
+    getSensor(sensorId: $sensorId) {
+      sensorId
+      sensorType
     }
   }
 `;
-export const listProducts = /* GraphQL */ `
-  query ListProducts(
-    $filter: ModelProductFilterInput
+export const getSensorValue = /* GraphQL */ `
+  query GetSensorValue($id: ID!) {
+    getSensorValue(id: $id) {
+      id
+      sensorId
+      value
+      isWarning
+      timestamp
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listSensorValues = /* GraphQL */ `
+  query ListSensorValues(
+    $filter: ModelSensorValueFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listProducts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listSensorValues(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        name
-        description
-        price
-        userId
-        userName
-        image
+        sensorId
+        value
+        isWarning
+        timestamp
         createdAt
         updatedAt
-        owner
       }
       nextToken
     }

@@ -1,60 +1,51 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createProduct = /* GraphQL */ `
-  mutation CreateProduct(
-    $input: CreateProductInput!
-    $condition: ModelProductConditionInput
+export const createSensorValue = /* GraphQL */ `
+  mutation CreateSensorValue(
+    $input: CreateSensorValueInput!
+    $condition: ModelSensorValueConditionInput
   ) {
-    createProduct(input: $input, condition: $condition) {
+    createSensorValue(input: $input, condition: $condition) {
       id
-      name
-      description
-      price
-      userId
-      userName
-      image
+      sensorId
+      value
+      isWarning
+      timestamp
       createdAt
       updatedAt
-      owner
     }
   }
 `;
-export const updateProduct = /* GraphQL */ `
-  mutation UpdateProduct(
-    $input: UpdateProductInput!
-    $condition: ModelProductConditionInput
+export const updateSensorValue = /* GraphQL */ `
+  mutation UpdateSensorValue(
+    $input: UpdateSensorValueInput!
+    $condition: ModelSensorValueConditionInput
   ) {
-    updateProduct(input: $input, condition: $condition) {
+    updateSensorValue(input: $input, condition: $condition) {
       id
-      name
-      description
-      price
-      userId
-      userName
-      image
+      sensorId
+      value
+      isWarning
+      timestamp
       createdAt
       updatedAt
-      owner
     }
   }
 `;
-export const deleteProduct = /* GraphQL */ `
-  mutation DeleteProduct(
-    $input: DeleteProductInput!
-    $condition: ModelProductConditionInput
+export const deleteSensorValue = /* GraphQL */ `
+  mutation DeleteSensorValue(
+    $input: DeleteSensorValueInput!
+    $condition: ModelSensorValueConditionInput
   ) {
-    deleteProduct(input: $input, condition: $condition) {
+    deleteSensorValue(input: $input, condition: $condition) {
       id
-      name
-      description
-      price
-      userId
-      userName
-      image
+      sensorId
+      value
+      isWarning
+      timestamp
       createdAt
       updatedAt
-      owner
     }
   }
 `;
