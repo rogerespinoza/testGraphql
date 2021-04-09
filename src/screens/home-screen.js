@@ -136,7 +136,8 @@ const HomeScreen = (props) => {
        style ={{backgroundColor: '#ddd'}}
       >
         <View style={{height: '100%', backgroundColor: '#ddd', justifyContent: 'center', alignItems: 'center'}}>
-          <TouchableOpacity style={{height: 200, width: 200, borderRadius: 100, backgroundColor: color}} onPress={() => {setInit(true)}} />
+          <TouchableOpacity style={{ height: 30, width: 30, borderRadius: 10, backgroundColor: '#a0a'}}  onPress={() => props.out()}/>
+          <TouchableOpacity style={{height: 200, width: 200, borderRadius: 100, backgroundColor: color, marginVertical: '20%'}} onPress={() => {setInit(true)}} />
         </View>
         {/* {productsList && (
           <ProductList
