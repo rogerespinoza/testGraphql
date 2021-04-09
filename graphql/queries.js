@@ -1,22 +1,13 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getSensor = /* GraphQL */ `
-  query GetSensor($sensorId: String!) {
-    getSensor(sensorId: $sensorId) {
-      sensorId
-      sensorType
-    }
-  }
-`;
 export const getSensorValue = /* GraphQL */ `
   query GetSensorValue($id: ID!) {
     getSensorValue(id: $id) {
       id
       sensorId
-      value
-      isWarning
-      timestamp
+      color
+      IO
       createdAt
       updatedAt
     }
@@ -32,9 +23,8 @@ export const listSensorValues = /* GraphQL */ `
       items {
         id
         sensorId
-        value
-        isWarning
-        timestamp
+        color
+        IO
         createdAt
         updatedAt
       }

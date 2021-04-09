@@ -6,9 +6,8 @@ export const onUpdateSensorValue = /* GraphQL */ `
     onUpdateSensorValue(sensorId: $sensorId) {
       id
       sensorId
-      value
-      isWarning
-      timestamp
+      color
+      IO
       createdAt
       updatedAt
     }

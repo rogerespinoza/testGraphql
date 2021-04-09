@@ -1,6 +1,6 @@
 {
   "auth": {
-    "amplifyshop7a37546c": {
+    "amplifyshopfa293759": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
@@ -16,14 +16,14 @@
           "defaultAuthentication": {
             "authenticationType": "AMAZON_COGNITO_USER_POOLS",
             "userPoolConfig": {
-              "userPoolId": "authamplifyshop7a37546c"
+              "userPoolId": "authamplifyshopfa293759"
             }
           },
           "additionalAuthenticationProviders": [
             {
               "authenticationType": "API_KEY",
               "apiKeyConfig": {
-                "apiKeyExpirationDays": 7,
+                "apiKeyExpirationDays": 20,
                 "description": "guest"
               }
             }

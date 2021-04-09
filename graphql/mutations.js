@@ -9,9 +9,8 @@ export const createSensorValue = /* GraphQL */ `
     createSensorValue(input: $input, condition: $condition) {
       id
       sensorId
-      value
-      isWarning
-      timestamp
+      color
+      IO
       createdAt
       updatedAt
     }
@@ -25,9 +24,8 @@ export const updateSensorValue = /* GraphQL */ `
     updateSensorValue(input: $input, condition: $condition) {
       id
       sensorId
-      value
-      isWarning
-      timestamp
+      color
+      IO
       createdAt
       updatedAt
     }
@@ -41,9 +39,8 @@ export const deleteSensorValue = /* GraphQL */ `
     deleteSensorValue(input: $input, condition: $condition) {
       id
       sensorId
-      value
-      isWarning
-      timestamp
+      color
+      IO
       createdAt
       updatedAt
     }

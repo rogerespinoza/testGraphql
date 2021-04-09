@@ -105,8 +105,8 @@ const HomeScreen = (props) => {
         next: (response) => {
 
           //update the sensor's status in state
-          console.log(response.value.data.onUpdateSensorValue.value);
-          setColor(`#${response.value.data.onUpdateSensorValue.value}000${response.value.data.onUpdateSensorValue.value}0`)
+          console.log(response.value.data.onUpdateSensorValue);
+          setColor(response.value.data.onUpdateSensorValue.color)
           // if (response.value.data.onCreateSensorValue) {
           //   setSensorValue(response.value.data.onCreateSensorValue)
           // }
@@ -132,7 +132,9 @@ const HomeScreen = (props) => {
   return (
     <>
       <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
+      <SafeAreaView
+       style ={{backgroundColor: '#ddd'}}
+      >
         <View style={{height: '100%', backgroundColor: '#ddd', justifyContent: 'center', alignItems: 'center'}}>
           <TouchableOpacity style={{height: 200, width: 200, borderRadius: 100, backgroundColor: color}} onPress={() => {setInit(true)}} />
         </View>
