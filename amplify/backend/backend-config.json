@@ -26,10 +26,31 @@
                 "apiKeyExpirationDays": 20,
                 "description": "guest"
               }
+            },
+            {
+              "authenticationType": "AWS_IAM"
             }
           ]
         }
       }
+    }
+  },
+  "function": {
+    "testIoT01": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "api",
+          "resourceName": "amplifyshop",
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput",
+            "GraphQLAPIKeyOutput"
+          ]
+        }
+      ]
     }
   }
 }

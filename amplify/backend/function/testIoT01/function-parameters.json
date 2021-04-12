@@ -1,0 +1,13 @@
+{
+  "lambdaLayers": [],
+  "permissions": {
+    "api": {
+      "amplifyshop": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    }
+  }
+}

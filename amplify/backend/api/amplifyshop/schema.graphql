@@ -1,6 +1,7 @@
 type SensorValue @model (subscriptions: null)
 @auth (
     rules: [
+        { allow: private, provider: iam},
         { allow: private, provider: userPools}
     ]
 ) 
