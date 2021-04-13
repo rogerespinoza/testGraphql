@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useRef} from 'react';
 import {API, graphqlOperation} from 'aws-amplify';
 import {SafeAreaView, StatusBar, View, TouchableOpacity} from 'react-native';
-import {listProducts, getSwitch} from '../../graphql/queries';
+import {listProducts, getSensorValue} from '../../graphql/queries';
 // import ProductList from '../components/ProductList';
 
 // import {onUpdateSwitchValue} from '../../graphql/subscriptions'
@@ -41,11 +41,12 @@ const HomeScreen = (props) => {
     try {
       // const products = await API.graphql({query: getSwitch("374db023-ae93-4a0d-b257-fddf66c68a3b")});
       // const products = await API.graphql({query:getSwitch, id: "374db023-ae93-4a0d-b257-fddf66c68a3b"});
-      const switch1 = await API.graphql(graphqlOperation(getSwitch, {id: "374db023-ae93-4a0d-b257-fddf66c68a3b"}));
+      const switch1 = await API.graphql(graphqlOperation(getSensorValue, {id: "9b917f10-a2eb-46c9-b0cb-e4424c1f05b6"}));
       if (switch1.data) {
         console.log('Products: \n');
-        console.log(switch1.data.getSwitch.state);
-        setState1(switch1.data.getSwitch.state)
+        console.log(switch1.data.getSensorValue.color);
+        setColor(switch1.data.getSensorValue.color);
+        // setState1(switch1.data.getSwitch.state)
         // setProducts(products.data.listProducts.items);
       }
     } catch (e) {
@@ -93,7 +94,7 @@ const HomeScreen = (props) => {
 
 
   useEffect(() => {
-    // fetchSwitch();
+    fetchSwitch();
   }, []);
 
   useEffect(() => {

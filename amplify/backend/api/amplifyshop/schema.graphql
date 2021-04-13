@@ -15,3 +15,7 @@ type SensorValue @model (subscriptions: null)
 type Subscription {
   onUpdateSensorValue(sensorId: String!): SensorValue @aws_subscribe(mutations: ["updateSensorValue"])
 }
+
+type Query {
+  getSensor(sensorId: String!): SensorValue
+}

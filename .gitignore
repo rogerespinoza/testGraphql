@@ -59,6 +59,7 @@ buck-out/
 /ios/Pods/
 
 #amplify
+team-provider-info.json
 amplify/\#current-cloud-backend
 amplify/.config/local-*
 amplify/logs
