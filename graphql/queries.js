@@ -13,6 +13,11 @@ export const getSensor = /* GraphQL */ `
     }
   }
 `;
+export const functionPubSend = /* GraphQL */ `
+  query FunctionPubSend($payload: String!) {
+    functionPubSend(payload: $payload)
+  }
+`;
 export const getSensorValue = /* GraphQL */ `
   query GetSensorValue($id: ID!) {
     getSensorValue(id: $id) {

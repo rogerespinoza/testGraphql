@@ -51,6 +51,17 @@
           ]
         }
       ]
+    },
+    "functionIotPub": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": []
+    },
+    "functionIotPub01": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
     }
   }
 }

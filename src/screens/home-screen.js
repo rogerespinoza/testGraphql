@@ -1,7 +1,8 @@
 import React, {useEffect, useState, useRef} from 'react';
 import {API, graphqlOperation} from 'aws-amplify';
-import {SafeAreaView, StatusBar, View, TouchableOpacity} from 'react-native';
-import {listProducts, getSensorValue} from '../../graphql/queries';
+import {SafeAreaView, StatusBar, View, TouchableOpacity, AppState} from 'react-native';
+import {listProducts, getSensorValue, functionPubSend} from '../../graphql/queries';
+import {updateSensorValue} from '../../graphql/mutations'
 // import ProductList from '../components/ProductList';
 
 // import {onUpdateSwitchValue} from '../../graphql/subscriptions'
@@ -21,8 +22,48 @@ const HomeScreen = (props) => {
   const [readyToSubscribe, setReadyToSubscribe] = useState(false);
 
   const [color, setColor] = useState('#000000');
+  const [IO, setIO] = useState(0);
 
   const sub1 = useRef(null);
+
+  useEffect(() => {
+    AppState.addEventListener("change", _handleAppStateChange);
+
+    return () => {
+      AppState.removeEventListener("change", _handleAppStateChange);
+    };
+  }, []);
+
+  const _handleAppStateChange = (state) => {
+    // if (
+    //   // appState.current.match(/inactive|background/) &&
+    //   nextAppState === "active"
+    // ) {
+
+    // }
+
+    switch (state) {
+      case 'active':
+        fetchSwitch();
+        // funSubscription();
+        break;
+    
+      case 'inactive':
+        
+        break;
+    
+      case 'background':
+        this.subscriber.unsubscribe();
+        break;
+    
+      default:
+        break;
+    }
+
+    // appState.current = nextAppState;
+    // setAppStateVisible(appState.current);
+    console.log(state);
+  };
 
   const fetchProducts = async () => {
     try {
@@ -100,36 +141,92 @@ const HomeScreen = (props) => {
   useEffect(() => {
 
     // if (init) {
-      console.log('start subscription to sensor');
+      // console.log('start subscription to sensor');
 
-      const subscriber = API.graphql(graphqlOperation(onUpdateSensorValue, {sensorId : "AAAAA"})).subscribe({
-        next: (response) => {
+      // this.subscriber = API.graphql(graphqlOperation(onUpdateSensorValue, {sensorId : "AAAAA"})).subscribe({
+      //   next: (response) => {
 
-          //update the sensor's status in state
-          console.log(response.value.data.onUpdateSensorValue);
-          setColor(response.value.data.onUpdateSensorValue.color)
-          // if (response.value.data.onCreateSensorValue) {
-          //   setSensorValue(response.value.data.onCreateSensorValue)
-          // }
-        },
-        error: (error) => {
-          console.log('error on sensor subscription', error);
-        }
-      });
+      //     //update the sensor's status in state
+      //     console.log(response.value.data.onUpdateSensorValue);
+      //     setIO(response.value.data.onUpdateSensorValue.IO);
+      //     setColor(response.value.data.onUpdateSensorValue.color)
+      //     // if (response.value.data.onCreateSensorValue) {
+      //     //   setSensorValue(response.value.data.onCreateSensorValue)
+      //     // }
+      //   },
+      //   error: (error) => {
+      //     console.log('error on sensor subscription', error);
+      //   }
+      // });
 
-      return () => {
-        console.log('terminating subscription to sensor');
-        subscriber.unsubscribe();
-      }
+      // return () => {
+      //   console.log('terminating subscription to sensor');
+      //   this.subscriber.unsubscribe();
+      // }
     // }
+    funSubscription();
 
-  }, [init]);
+  }, []);
+
+
+  const funSubscription = () => {
+    console.log('start subscription to sensor');
+
+    this.subscriber = API.graphql(graphqlOperation(onUpdateSensorValue, {sensorId : "AAAAA"})).subscribe({
+      next: (response) => {
+
+        //update the sensor's status in state
+        console.log(response.value.data.onUpdateSensorValue);
+        setIO(response.value.data.onUpdateSensorValue.IO);
+        setColor(response.value.data.onUpdateSensorValue.color)
+        // if (response.value.data.onCreateSensorValue) {
+        //   setSensorValue(response.value.data.onCreateSensorValue)
+        // }
+      },
+      error: (error) => {
+        console.log('error on sensor subscription', error);
+      }
+    });
+
+    return () => {
+      console.log('terminating subscription to sensor');
+      this.subscriber.unsubscribe();
+    }
+  }
 
   const onRefresh = async () => {
     setRefreshing(true);
     await fetchProducts();
     setRefreshing(false);
   };
+
+
+  const funPublish = async () => {
+
+    let ioAux = IO == 0 ? 1 : 0;
+
+    let colorAux = IO == 0 ? "#0d0" : "#d00";
+
+    try {
+      
+
+
+      const response = await API.graphql(graphqlOperation(functionPubSend,{payload: `{\"IO\":${ioAux}}`}));
+
+      if(response && response.data.functionPubSend){
+
+        console.log(response.data.functionPubSend);
+
+      }
+
+      await API.graphql(graphqlOperation(updateSensorValue,{input:{id: "9b917f10-a2eb-46c9-b0cb-e4424c1f05b6", IO: ioAux, color: colorAux}}))
+      
+    } catch (error) {
+      console.log(error);
+    }
+
+  }
+
   return (
     <>
       <StatusBar barStyle="dark-content" />
@@ -138,7 +235,9 @@ const HomeScreen = (props) => {
       >
         <View style={{height: '100%', backgroundColor: '#ddd', justifyContent: 'center', alignItems: 'center'}}>
           <TouchableOpacity style={{ height: 30, width: 30, borderRadius: 10, backgroundColor: '#a0a'}}  onPress={() => props.out()}/>
-          <TouchableOpacity style={{height: 200, width: 200, borderRadius: 100, backgroundColor: color, marginVertical: '20%'}} onPress={() => {setInit(true)}} />
+          <TouchableOpacity style={{height: 200, width: 200, borderRadius: 100, backgroundColor: color, marginVertical: '20%'}} onPress={() => {funPublish()}} />
+          <TouchableOpacity style={{ height: 30, width: 30, borderRadius: 10, backgroundColor: '#a0a',marginVertical: '5%'}}  onPress={() => this.subscriber.unsubscribe()}/>
+          <TouchableOpacity style={{ height: 30, width: 30, borderRadius: 10, backgroundColor: '#a0a',marginVertical: '5%'}}  onPress={() => {fetchSwitch(); funSubscription()}}/>
         </View>
         {/* {productsList && (
           <ProductList

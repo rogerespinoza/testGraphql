@@ -18,4 +18,110 @@ type Subscription {
 
 type Query {
   getSensor(sensorId: String!): SensorValue
+  functionPubSend(payload: String!): String @function(name: "functionIotPub01-${env}")
+}
+
+
+
+
+
+type State {
+  devices: {
+    SW1: [SW1]
+    SW2: [SW2]
+  }
+}
+
+type State {
+  devices: devices
+}
+
+type devices {
+  SW1: [SW1]
+  SW2: [SW2]
+}
+
+type SW1 {
+  id: ID! 
+  mainData: mainData
+}
+
+type SW2 {
+  id: ID! 
+  mainData: mainData
+}
+
+type mainData {
+  deviceData: deviceData
+  linkedDevice: [linkedDevice]
+  config: Boolean
+  links: Int
+  maxLinks: Int
+}
+
+type deviceData {
+  key: String
+  model: String
+  type: String
+  topic: String
+}
+
+type linkedDevice {
+  id: ID!
+  linkedData: LinkedData
+}
+
+type LinkedData {
+  date: String
+  dev: String
+  name: String
+}
+
+
+
+
+type MainDataDevicesIoT {
+  DataSW1: DataSW1
+}
+
+type DataSW1 { 
+  dataTimerOff: DataTimerOffSW1
+  dataTimerOn: DataTimerOnSW1
+  dataTimer: DataTimerSW1
+  dataIO: DataIOSW1 
+}
+
+type DataIOSW1 { 
+  IO: Int
+}
+
+type DataTimerSW1 { 
+  tTT: Int 
+  tTB: Int 
+  tTF: Int 
+  tTS: Int 
+}
+
+type DataTimerOnSW1 { 
+  tE: Int
+  tET: Int
+  tEMn: Int
+  tETs: Int
+  tEWd: Int
+  tETr: Int
+  tEFr: Int
+  tESt: Int
+  tESn: Int 
+}
+
+type DataTimerOffSW1 { 
+  tD: Int
+  tDT: Int
+  tDMn: Int
+  tDTs: Int
+  tDWd: Int
+  tDTr: Int
+  tDFr: Int
+  tDSt: Int
+  tDSn: Int
 }
