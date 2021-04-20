@@ -8,6 +8,7 @@ export const createSw1 = /* GraphQL */ `
   ) {
     createSW1(input: $input, condition: $condition) {
       id
+      payload
       deviceData {
         key
         model
@@ -40,6 +41,7 @@ export const updateSw1 = /* GraphQL */ `
   ) {
     updateSW1(input: $input, condition: $condition) {
       id
+      payload
       deviceData {
         key
         model
@@ -72,6 +74,7 @@ export const deleteSw1 = /* GraphQL */ `
   ) {
     deleteSW1(input: $input, condition: $condition) {
       id
+      payload
       deviceData {
         key
         model
@@ -104,6 +107,7 @@ export const createSw2 = /* GraphQL */ `
   ) {
     createSW2(input: $input, condition: $condition) {
       id
+      payload
       deviceData {
         key
         model
@@ -136,6 +140,7 @@ export const updateSw2 = /* GraphQL */ `
   ) {
     updateSW2(input: $input, condition: $condition) {
       id
+      payload
       deviceData {
         key
         model
@@ -168,6 +173,7 @@ export const deleteSw2 = /* GraphQL */ `
   ) {
     deleteSW2(input: $input, condition: $condition) {
       id
+      payload
       deviceData {
         key
         model
@@ -233,141 +239,6 @@ export const deleteLinkedDevice = /* GraphQL */ `
       linkDevId
       dev
       name
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const createMainDataDevicesIoT = /* GraphQL */ `
-  mutation CreateMainDataDevicesIoT(
-    $input: CreateMainDataDevicesIoTInput!
-    $condition: ModelMainDataDevicesIoTConditionInput
-  ) {
-    createMainDataDevicesIoT(input: $input, condition: $condition) {
-      id
-      DataSW1 {
-        dataTimerOff {
-          tD
-          tDT
-          tDMn
-          tDTs
-          tDWd
-          tDTr
-          tDFr
-          tDSt
-          tDSn
-        }
-        dataTimerOn {
-          tE
-          tET
-          tEMn
-          tETs
-          tEWd
-          tETr
-          tEFr
-          tESt
-          tESn
-        }
-        dataTimer {
-          tTT
-          tTB
-          tTF
-          tTS
-        }
-        dataIO {
-          IO
-        }
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateMainDataDevicesIoT = /* GraphQL */ `
-  mutation UpdateMainDataDevicesIoT(
-    $input: UpdateMainDataDevicesIoTInput!
-    $condition: ModelMainDataDevicesIoTConditionInput
-  ) {
-    updateMainDataDevicesIoT(input: $input, condition: $condition) {
-      id
-      DataSW1 {
-        dataTimerOff {
-          tD
-          tDT
-          tDMn
-          tDTs
-          tDWd
-          tDTr
-          tDFr
-          tDSt
-          tDSn
-        }
-        dataTimerOn {
-          tE
-          tET
-          tEMn
-          tETs
-          tEWd
-          tETr
-          tEFr
-          tESt
-          tESn
-        }
-        dataTimer {
-          tTT
-          tTB
-          tTF
-          tTS
-        }
-        dataIO {
-          IO
-        }
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const deleteMainDataDevicesIoT = /* GraphQL */ `
-  mutation DeleteMainDataDevicesIoT(
-    $input: DeleteMainDataDevicesIoTInput!
-    $condition: ModelMainDataDevicesIoTConditionInput
-  ) {
-    deleteMainDataDevicesIoT(input: $input, condition: $condition) {
-      id
-      DataSW1 {
-        dataTimerOff {
-          tD
-          tDT
-          tDMn
-          tDTs
-          tDWd
-          tDTr
-          tDFr
-          tDSt
-          tDSn
-        }
-        dataTimerOn {
-          tE
-          tET
-          tEMn
-          tETs
-          tEWd
-          tETr
-          tEFr
-          tESt
-          tESn
-        }
-        dataTimer {
-          tTT
-          tTB
-          tTF
-          tTS
-        }
-        dataIO {
-          IO
-        }
-      }
       createdAt
       updatedAt
     }

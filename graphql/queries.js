@@ -22,6 +22,7 @@ export const getSw1 = /* GraphQL */ `
   query GetSw1($id: ID!) {
     getSW1(id: $id) {
       id
+      payload
       deviceData {
         key
         model
@@ -56,6 +57,7 @@ export const listSw1s = /* GraphQL */ `
     listSW1s(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        payload
         deviceData {
           key
           model
@@ -79,6 +81,7 @@ export const getSw2 = /* GraphQL */ `
   query GetSw2($id: ID!) {
     getSW2(id: $id) {
       id
+      payload
       deviceData {
         key
         model
@@ -113,6 +116,7 @@ export const listSw2s = /* GraphQL */ `
     listSW2s(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        payload
         deviceData {
           key
           model
@@ -156,68 +160,6 @@ export const listLinkedDevices = /* GraphQL */ `
         linkDevId
         dev
         name
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const getMainDataDevicesIoT = /* GraphQL */ `
-  query GetMainDataDevicesIoT($id: ID!) {
-    getMainDataDevicesIoT(id: $id) {
-      id
-      DataSW1 {
-        dataTimerOff {
-          tD
-          tDT
-          tDMn
-          tDTs
-          tDWd
-          tDTr
-          tDFr
-          tDSt
-          tDSn
-        }
-        dataTimerOn {
-          tE
-          tET
-          tEMn
-          tETs
-          tEWd
-          tETr
-          tEFr
-          tESt
-          tESn
-        }
-        dataTimer {
-          tTT
-          tTB
-          tTF
-          tTS
-        }
-        dataIO {
-          IO
-        }
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listMainDataDevicesIoTs = /* GraphQL */ `
-  query ListMainDataDevicesIoTs(
-    $filter: ModelMainDataDevicesIoTFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listMainDataDevicesIoTs(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
         createdAt
         updatedAt
       }

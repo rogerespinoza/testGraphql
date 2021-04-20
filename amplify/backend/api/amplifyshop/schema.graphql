@@ -1,11 +1,11 @@
-type SensorValue @model (subscriptions: null)
-@auth (
+type SensorValue
+  @model(subscriptions: null)
+  @auth(
     rules: [
-        { allow: private, provider: iam},
-        { allow: private, provider: userPools}
+      {allow: private, provider: iam}
+      {allow: private, provider: userPools}
     ]
-) 
-{
+  ) {
   id: ID!
   sensorId: String!
   color: String!
@@ -13,31 +13,29 @@ type SensorValue @model (subscriptions: null)
 }
 
 type Subscription {
-  onUpdateSensorValue(sensorId: String!): SensorValue @aws_subscribe(mutations: ["updateSensorValue"])
+  onUpdateSensorValue(sensorId: String!): SensorValue
+    @aws_subscribe(mutations: ["updateSensorValue"])
 }
 
 type Query {
   getSensor(sensorId: String!): SensorValue
-  functionPubSend(payload: String!): String @function(name: "functionIotPub01-${env}")
+  functionPubSend(payload: String!): String
+    @function(name: "functionIotPub01-${env}")
 }
 
-
-
-
-
-
-
-type SW1 @model{
-  id: ID! 
+type SW1 @model {
+  id: ID!
+  payload: String
   deviceData: DeviceData
-  linkedDevice: [LinkedDevice] @connection(keyName: "device", fields: ["id"]) 
+  linkedDevice: [LinkedDevice] @connection(keyName: "device", fields: ["id"])
   config: Boolean
   links: Int
   maxLinks: Int
 }
 
-type SW2 @model{
-  id: ID! 
+type SW2 @model {
+  id: ID!
+  payload: String
   deviceData: DeviceData
   linkedDevice: [LinkedDevice] @connection(keyName: "device", fields: ["id"])
   config: Boolean
@@ -52,79 +50,12 @@ type DeviceData {
   topic: String
 }
 
-type LinkedDevice @model
-  @key(name: "device", fields: ["linkDevId","dev", "name"]) {
+type LinkedDevice
+  @model
+  @key(name: "device", fields: ["linkDevId", "dev", "name"]) {
   id: ID!
   linkDevId: ID!
   dev: String
   name: String
 }
-
-
-
-
-
-
-
-
-
-
-type DeviceSW1 { 
-  dataIO: DataIOSW1 
-  dataTimer: DataTimerSW1
-  dataTimerOn: DataTimerOnSW1
-  dataTimerOff: DataTimerOffSW1
-}
-
-type DataIOSW1 { 
-  IO: Int
-}
-
-type DataTimerSW1 { 
-  tTT: Int 
-  tTB: Int 
-  tTF: Int 
-  tTS: Int 
-}
-
-type DataTimerOnSW1 { 
-  tE: Int
-  tET: Int
-  tEMn: Int
-  tETs: Int
-  tEWd: Int
-  tETr: Int
-  tEFr: Int
-  tESt: Int
-  tESn: Int 
-}
-
-type DataTimerOffSW1 { 
-  tD: Int
-  tDT: Int
-  tDMn: Int
-  tDTs: Int
-  tDWd: Int
-  tDTr: Int
-  tDFr: Int
-  tDSt: Int
-  tDSn: Int
-}
-
-
-
-
-
-type DataIOSW2 { 
-  IO: {
-    IO1: String
-    IO2: String
-  }
-}
-
-
-
-
-
-
 
