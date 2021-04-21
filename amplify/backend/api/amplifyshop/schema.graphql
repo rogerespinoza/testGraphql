@@ -23,27 +23,48 @@ type Query {
     @function(name: "functionIotPub01-${env}")
 }
 
+
+
+
+
+
+
+
+
+
+type Users @model {
+  id: ID!
+  devices: [DeviceUser] @connection(keyName: "users", fields: ["id"])
+}
+
+type DeviceUser 
+  @model
+  @key(name: "users", fields: ["idUser"]){
+  id: ID
+  idUser: ID
+  idDevice: ID!
+  device: DeviceData @connection(fields: ["idDevice"])
+}
+
 type SW1 @model {
   id: ID!
   payload: String
-  deviceData: DeviceData
+  deviceData: DeviceData @connection(fields: ["id"])
   linkedDevice: [LinkedDevice] @connection(keyName: "device", fields: ["id"])
-  config: Boolean
-  links: Int
-  maxLinks: Int
 }
 
 type SW2 @model {
   id: ID!
   payload: String
-  deviceData: DeviceData
+  deviceData: DeviceData @connection(fields: ["id"])
   linkedDevice: [LinkedDevice] @connection(keyName: "device", fields: ["id"])
-  config: Boolean
-  links: Int
-  maxLinks: Int
 }
 
-type DeviceData {
+type DeviceData @model{
+  id: ID
+  config: String
+  links: Int
+  maxLinks: Int
   key: String
   model: String
   type: String

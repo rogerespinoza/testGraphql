@@ -18,16 +18,113 @@ export const functionPubSend = /* GraphQL */ `
     functionPubSend(payload: $payload)
   }
 `;
+export const getUsers = /* GraphQL */ `
+  query GetUsers($id: ID!) {
+    getUsers(id: $id) {
+      id
+      devices {
+        items {
+          id
+          idUser
+          idDevice
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listUserss = /* GraphQL */ `
+  query ListUserss(
+    $filter: ModelUsersFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listUserss(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        devices {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getDeviceUser = /* GraphQL */ `
+  query GetDeviceUser($id: ID!) {
+    getDeviceUser(id: $id) {
+      id
+      idUser
+      idDevice
+      device {
+        id
+        config
+        links
+        maxLinks
+        key
+        model
+        type
+        topic
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listDeviceUsers = /* GraphQL */ `
+  query ListDeviceUsers(
+    $filter: ModelDeviceUserFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listDeviceUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        idUser
+        idDevice
+        device {
+          id
+          config
+          links
+          maxLinks
+          key
+          model
+          type
+          topic
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
 export const getSw1 = /* GraphQL */ `
   query GetSw1($id: ID!) {
     getSW1(id: $id) {
       id
       payload
       deviceData {
+        id
+        config
+        links
+        maxLinks
         key
         model
         type
         topic
+        createdAt
+        updatedAt
       }
       linkedDevice {
         items {
@@ -40,9 +137,6 @@ export const getSw1 = /* GraphQL */ `
         }
         nextToken
       }
-      config
-      links
-      maxLinks
       createdAt
       updatedAt
     }
@@ -59,17 +153,20 @@ export const listSw1s = /* GraphQL */ `
         id
         payload
         deviceData {
+          id
+          config
+          links
+          maxLinks
           key
           model
           type
           topic
+          createdAt
+          updatedAt
         }
         linkedDevice {
           nextToken
         }
-        config
-        links
-        maxLinks
         createdAt
         updatedAt
       }
@@ -83,10 +180,16 @@ export const getSw2 = /* GraphQL */ `
       id
       payload
       deviceData {
+        id
+        config
+        links
+        maxLinks
         key
         model
         type
         topic
+        createdAt
+        updatedAt
       }
       linkedDevice {
         items {
@@ -99,9 +202,6 @@ export const getSw2 = /* GraphQL */ `
         }
         nextToken
       }
-      config
-      links
-      maxLinks
       createdAt
       updatedAt
     }
@@ -118,17 +218,59 @@ export const listSw2s = /* GraphQL */ `
         id
         payload
         deviceData {
+          id
+          config
+          links
+          maxLinks
           key
           model
           type
           topic
+          createdAt
+          updatedAt
         }
         linkedDevice {
           nextToken
         }
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getDeviceData = /* GraphQL */ `
+  query GetDeviceData($id: ID!) {
+    getDeviceData(id: $id) {
+      id
+      config
+      links
+      maxLinks
+      key
+      model
+      type
+      topic
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listDeviceDatas = /* GraphQL */ `
+  query ListDeviceDatas(
+    $filter: ModelDeviceDataFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listDeviceDatas(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
         config
         links
         maxLinks
+        key
+        model
+        type
+        topic
         createdAt
         updatedAt
       }

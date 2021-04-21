@@ -1,6 +1,150 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createUsers = /* GraphQL */ `
+  mutation CreateUsers(
+    $input: CreateUsersInput!
+    $condition: ModelUsersConditionInput
+  ) {
+    createUsers(input: $input, condition: $condition) {
+      id
+      devices {
+        items {
+          id
+          idUser
+          idDevice
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateUsers = /* GraphQL */ `
+  mutation UpdateUsers(
+    $input: UpdateUsersInput!
+    $condition: ModelUsersConditionInput
+  ) {
+    updateUsers(input: $input, condition: $condition) {
+      id
+      devices {
+        items {
+          id
+          idUser
+          idDevice
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteUsers = /* GraphQL */ `
+  mutation DeleteUsers(
+    $input: DeleteUsersInput!
+    $condition: ModelUsersConditionInput
+  ) {
+    deleteUsers(input: $input, condition: $condition) {
+      id
+      devices {
+        items {
+          id
+          idUser
+          idDevice
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createDeviceUser = /* GraphQL */ `
+  mutation CreateDeviceUser(
+    $input: CreateDeviceUserInput!
+    $condition: ModelDeviceUserConditionInput
+  ) {
+    createDeviceUser(input: $input, condition: $condition) {
+      id
+      idUser
+      idDevice
+      device {
+        id
+        config
+        links
+        maxLinks
+        key
+        model
+        type
+        topic
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateDeviceUser = /* GraphQL */ `
+  mutation UpdateDeviceUser(
+    $input: UpdateDeviceUserInput!
+    $condition: ModelDeviceUserConditionInput
+  ) {
+    updateDeviceUser(input: $input, condition: $condition) {
+      id
+      idUser
+      idDevice
+      device {
+        id
+        config
+        links
+        maxLinks
+        key
+        model
+        type
+        topic
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteDeviceUser = /* GraphQL */ `
+  mutation DeleteDeviceUser(
+    $input: DeleteDeviceUserInput!
+    $condition: ModelDeviceUserConditionInput
+  ) {
+    deleteDeviceUser(input: $input, condition: $condition) {
+      id
+      idUser
+      idDevice
+      device {
+        id
+        config
+        links
+        maxLinks
+        key
+        model
+        type
+        topic
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const createSw1 = /* GraphQL */ `
   mutation CreateSw1(
     $input: CreateSW1Input!
@@ -10,10 +154,16 @@ export const createSw1 = /* GraphQL */ `
       id
       payload
       deviceData {
+        id
+        config
+        links
+        maxLinks
         key
         model
         type
         topic
+        createdAt
+        updatedAt
       }
       linkedDevice {
         items {
@@ -26,9 +176,6 @@ export const createSw1 = /* GraphQL */ `
         }
         nextToken
       }
-      config
-      links
-      maxLinks
       createdAt
       updatedAt
     }
@@ -43,10 +190,16 @@ export const updateSw1 = /* GraphQL */ `
       id
       payload
       deviceData {
+        id
+        config
+        links
+        maxLinks
         key
         model
         type
         topic
+        createdAt
+        updatedAt
       }
       linkedDevice {
         items {
@@ -59,9 +212,6 @@ export const updateSw1 = /* GraphQL */ `
         }
         nextToken
       }
-      config
-      links
-      maxLinks
       createdAt
       updatedAt
     }
@@ -76,10 +226,16 @@ export const deleteSw1 = /* GraphQL */ `
       id
       payload
       deviceData {
+        id
+        config
+        links
+        maxLinks
         key
         model
         type
         topic
+        createdAt
+        updatedAt
       }
       linkedDevice {
         items {
@@ -92,9 +248,6 @@ export const deleteSw1 = /* GraphQL */ `
         }
         nextToken
       }
-      config
-      links
-      maxLinks
       createdAt
       updatedAt
     }
@@ -109,10 +262,16 @@ export const createSw2 = /* GraphQL */ `
       id
       payload
       deviceData {
+        id
+        config
+        links
+        maxLinks
         key
         model
         type
         topic
+        createdAt
+        updatedAt
       }
       linkedDevice {
         items {
@@ -125,9 +284,6 @@ export const createSw2 = /* GraphQL */ `
         }
         nextToken
       }
-      config
-      links
-      maxLinks
       createdAt
       updatedAt
     }
@@ -142,10 +298,16 @@ export const updateSw2 = /* GraphQL */ `
       id
       payload
       deviceData {
+        id
+        config
+        links
+        maxLinks
         key
         model
         type
         topic
+        createdAt
+        updatedAt
       }
       linkedDevice {
         items {
@@ -158,9 +320,6 @@ export const updateSw2 = /* GraphQL */ `
         }
         nextToken
       }
-      config
-      links
-      maxLinks
       createdAt
       updatedAt
     }
@@ -175,10 +334,16 @@ export const deleteSw2 = /* GraphQL */ `
       id
       payload
       deviceData {
+        id
+        config
+        links
+        maxLinks
         key
         model
         type
         topic
+        createdAt
+        updatedAt
       }
       linkedDevice {
         items {
@@ -191,9 +356,63 @@ export const deleteSw2 = /* GraphQL */ `
         }
         nextToken
       }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createDeviceData = /* GraphQL */ `
+  mutation CreateDeviceData(
+    $input: CreateDeviceDataInput!
+    $condition: ModelDeviceDataConditionInput
+  ) {
+    createDeviceData(input: $input, condition: $condition) {
+      id
       config
       links
       maxLinks
+      key
+      model
+      type
+      topic
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateDeviceData = /* GraphQL */ `
+  mutation UpdateDeviceData(
+    $input: UpdateDeviceDataInput!
+    $condition: ModelDeviceDataConditionInput
+  ) {
+    updateDeviceData(input: $input, condition: $condition) {
+      id
+      config
+      links
+      maxLinks
+      key
+      model
+      type
+      topic
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteDeviceData = /* GraphQL */ `
+  mutation DeleteDeviceData(
+    $input: DeleteDeviceDataInput!
+    $condition: ModelDeviceDataConditionInput
+  ) {
+    deleteDeviceData(input: $input, condition: $condition) {
+      id
+      config
+      links
+      maxLinks
+      key
+      model
+      type
+      topic
       createdAt
       updatedAt
     }
